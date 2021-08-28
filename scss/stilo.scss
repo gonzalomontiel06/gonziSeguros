@@ -1,0 +1,263 @@
+// RESETEO WEB
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+// HEADER
+
+.header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../img/auto.jpg);
+    background-size: 100% 40rem;
+    position: relative;
+
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.6);
+    }
+    
+    &__imgLogo{
+        position: relative;
+    }
+}
+
+// DIV PASO 1 
+
+.divInicio{
+    display: flex;
+    justify-content: center;
+
+    &__container{
+        width: 17rem;
+        justify-content: center;
+
+        &--titulo{
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    
+        &--subtitulo{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 1.3em;
+        text-transform: uppercase;
+        margin-top: 10px;
+        border-bottom: solid 1px #ff8fa3;
+        text-align: center;
+        width: 193px;
+        }
+    
+        &--img{
+            width: 80px;
+            height: 64px;
+        }
+    }
+}
+
+// FORM DATOS PERSONALES Y DATOS VEHICULO
+
+.main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    
+    &__form1{
+        width: 19rem;
+
+        &--titulo{
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        &--form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+
+            
+            &--label{
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            &--input{
+                width: 17rem;
+                margin: 2px;
+                border-radius: 7px;
+                border: none;
+                border-left: solid 1px #ff8fa3;
+                border-bottom: solid 1px #ff8fa3;
+                font-family: 'Quicksand', sans-serif;
+                text-align: center;
+            }
+
+            &--input2{
+                @extend .main__form1--form--input;
+            }
+        }
+    }
+}
+
+.btn{
+    width: 100px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: solid 1px #ff8fa3;
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+
+
+    &:hover{
+        background-color: #ff4d6d;
+    }
+}
+
+.btn2{
+    @extend .btn;
+    height: 38px;
+    margin-top: 0;
+}
+
+// SECTION POLIZA TODO RIESGO Y TR COMPLETO
+
+.containerPolizas{
+    display: flex;
+    justify-content: center;
+
+    &--subtitulo{
+        @extend .divInicio__container--subtitulo;
+        height: 25px;
+    }
+
+    &--segundoSub{
+        @extend .main__form1--titulo;
+        margin-top: 15px;
+    }
+
+    &__arrow{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+    }
+}
+
+#sectionPolizas{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.polizaTodoRiesgo{
+    width: 24rem;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 35px;
+    text-align: center;
+
+    & h2{
+        margin-bottom: 20px;
+    }
+}
+
+.polizaTercerosCompleto{
+    @extend .polizaTodoRiesgo;
+}
+
+.subrayado{
+    border-bottom: solid 4px #ff8fa3;
+}
+
+// PASO 3 - CONFIRMACION DE DATOS
+
+.confirmaDatos{
+    
+    &__container{
+    display: flex;
+    justify-content: center;
+
+        &__texto{
+            width: 17rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            &--subtitulo{
+                @extend .divInicio__container--subtitulo;
+            }
+
+            &--segundoSub{
+                @extend .main__form1--titulo;
+                margin-top: 15px;
+                width: 17em;
+            }
+        }
+    }
+
+    &__personaYtarjeta{
+        display: flex;
+        justify-content: center;
+        
+            &__persona{
+            width: 37rem;
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
+            
+                &__form{
+                    display: flex;
+
+                    &--label{
+                        @extend .main__form1--form--label;
+                        text-align: center;
+                    }
+
+                    &--input{
+                        @extend .main__form1--form--input;
+                    }
+                }
+            }
+            
+            &__tarjeta{
+                width: 37rem;
+                display: flex;
+                margin-top: 230px;
+
+                &--subtitulo{
+                    @extend .confirmaDatos__container__texto--segundoSub;
+                }
+
+                &__form{
+                    display: flex;
+                    flex-direction: column;
+                    
+
+                    &--input{
+                        width: 17rem;
+                        margin: 2px;
+                        border: none;
+                        border-bottom: solid 1px #ff8fa3;
+                        font-family: 'Quicksand', sans-serif;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }

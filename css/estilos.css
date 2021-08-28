@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none; }
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../img/auto.jpg);
+  background-size: 100% 40rem;
+  position: relative; }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6); }
+  .header__imgLogo {
+    position: relative; }
+
+.divInicio {
+  display: flex;
+  justify-content: center; }
+  .divInicio__container {
+    width: 17rem;
+    justify-content: center; }
+    .divInicio__container--titulo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2em;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      text-align: center; }
+    .divInicio__container--subtitulo, .containerPolizas--subtitulo, .confirmaDatos__container__texto--subtitulo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.3em;
+      text-transform: uppercase;
+      margin-top: 10px;
+      border-bottom: solid 1px #ff8fa3;
+      text-align: center;
+      width: 193px; }
+    .divInicio__container--img {
+      width: 80px;
+      height: 64px; }
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px; }
+  .main__form1 {
+    width: 19rem; }
+    .main__form1--titulo, .containerPolizas--segundoSub, .confirmaDatos__container__texto--segundoSub, .confirmaDatos__personaYtarjeta__tarjeta--subtitulo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2em;
+      text-align: center; }
+    .main__form1--form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px; }
+      .main__form1--form--label, .confirmaDatos__personaYtarjeta__persona__form--label {
+        font-family: 'Quicksand', sans-serif; }
+      .main__form1--form--input, .main__form1--form--input2, .confirmaDatos__personaYtarjeta__persona__form--input {
+        width: 17rem;
+        margin: 2px;
+        border-radius: 7px;
+        border: none;
+        border-left: solid 1px #ff8fa3;
+        border-bottom: solid 1px #ff8fa3;
+        font-family: 'Quicksand', sans-serif;
+        text-align: center; }
+
+.btn, .btn2 {
+  width: 100px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: solid 1px #ff8fa3;
+  background-color: white;
+  font-family: 'Quicksand', sans-serif; }
+  .btn:hover, .btn2:hover {
+    background-color: #ff4d6d; }
+
+.btn2 {
+  height: 38px;
+  margin-top: 0; }
+
+.containerPolizas {
+  display: flex;
+  justify-content: center; }
+  .containerPolizas--subtitulo {
+    height: 25px; }
+  .containerPolizas--segundoSub {
+    margin-top: 15px; }
+  .containerPolizas__arrow {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px; }
+
+#sectionPolizas {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px; }
+
+.polizaTodoRiesgo, .polizaTercerosCompleto {
+  width: 24rem;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 35px;
+  text-align: center; }
+  .polizaTodoRiesgo h2, .polizaTercerosCompleto h2 {
+    margin-bottom: 20px; }
+
+.subrayado {
+  border-bottom: solid 4px #ff8fa3; }
+
+.confirmaDatos__container {
+  display: flex;
+  justify-content: center; }
+  .confirmaDatos__container__texto {
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .confirmaDatos__container__texto--segundoSub, .confirmaDatos__personaYtarjeta__tarjeta--subtitulo {
+      margin-top: 15px;
+      width: 17em; }
+
+.confirmaDatos__personaYtarjeta {
+  display: flex;
+  justify-content: center; }
+  .confirmaDatos__personaYtarjeta__persona {
+    width: 37rem;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px; }
+    .confirmaDatos__personaYtarjeta__persona__form {
+      display: flex; }
+      .confirmaDatos__personaYtarjeta__persona__form--label {
+        text-align: center; }
+  .confirmaDatos__personaYtarjeta__tarjeta {
+    width: 37rem;
+    display: flex;
+    margin-top: 230px; }
+    .confirmaDatos__personaYtarjeta__tarjeta__form {
+      display: flex;
+      flex-direction: column; }
+      .confirmaDatos__personaYtarjeta__tarjeta__form--input {
+        width: 17rem;
+        margin: 2px;
+        border: none;
+        border-bottom: solid 1px #ff8fa3;
+        font-family: 'Quicksand', sans-serif;
+        font-style: italic; }
