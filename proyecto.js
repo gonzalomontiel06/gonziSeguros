@@ -23,7 +23,7 @@ class Auto{
 // VARIABLES GLOBALES
 
 let añoActual = 2021;
-let ClienteDatos = {};
+let clienteDatos = [];
 let clienteAuto = {};
 let x
 let y
@@ -187,11 +187,9 @@ function valorCuotaTerceros() {
 
 // PASO 2 
 
-let btnCotizar = document.getElementById("cotiza");
 
-btnCotizar.addEventListener("submit", enviarData);
-    function enviarData(event){
-        event.preventDefault();
+$("#cotiza").submit(function (event){
+    event.preventDefault();
 
         clienteAuto = new Auto(x, y, a);
         console.log(clienteAuto);
@@ -209,42 +207,33 @@ btnCotizar.addEventListener("submit", enviarData);
             scrollTop: $(".containerPolizas").offset().top  
         }, "fast");
 
-        let mainPolizas = document.getElementById("sectionPolizas")
+        $("#sectionPolizas").fadeIn(2000).append(`<div class="containerpolizas__boxH2">
+                                    <h2 class="containerPolizas__boxH2--subtitulo">paso2</h2>
+                                    <h2 class="containerPolizas__boxH2--segundoSub">elegi tu poliza</h2>
+                                    </div>
 
-        let container = document.createElement("div")
-        container.className = "polizaTodoRiesgo col-lg-6"
-        container.innerHTML = `<h2>poliza <span class="subrayado">todo riesgo</span> </h2> 
-                                <p>Monto asegurado: $${todoRiesgo.montoAseg}</p> 
-                                <p>Franquicia: $${todoRiesgo.franquicia}</p> 
-                                <p>Valor de cuota: $${todoRiesgo.valorCuota}</p>
-                                <input class="btn2" type="submit" value="Contratá">`;
-        mainPolizas.appendChild(container);
+                                    <div class="containerPolizas__arrow col-lg-12">
+                                        <img src="./img/flechaizquierda.png" alt="flechaIzquierda">
+                                        <img src="./img/flechaderecha.png" alt="flechaDerecha">
+                                    </div>
 
-        let container2 = document.createElement("div");
-        container2.className = "polizaTercerosCompleto col-lg-6"
-        container2.innerHTML = `<h2>poliza <span class="subrayado">terceros completo</span></h2> 
-                                <p>Monto asegurado: $${tercerosCompleto.montoAseg}</p> 
-                                <p>Franquicia: NO </p> 
-                                <p>Valor de cuota: $${tercerosCompleto.valorCuota}</p>
-                                <input class="btn2" type="submit" value="Contratá">`
-                                mainPolizas.appendChild(container2);
-
-        let containerArrow = document.createElement("div");
-        containerArrow.className = "containerPolizas__arrow col-lg-12"
-        containerArrow.innerHTML = `<img src="./img/flechaizquierda.png" alt="flechaIzquierda">
-                                    <img src="./img/flechaderecha.png" alt="flechaDerecha">`;
-        mainPolizas.prepend(containerArrow);
-
-        let elegiPoliza = document.createElement("h2");
-        elegiPoliza.className = "containerPolizas--segundoSub";
-        elegiPoliza.innerHTML = `elegi tu poliza`
-        mainPolizas.prepend(elegiPoliza);
-
-        let containerPaso2 = document.createElement("h2");
-        containerPaso2.className = "containerPolizas--subtitulo";
-        containerPaso2.innerHTML = `paso 2`;
-        mainPolizas.prepend(containerPaso2);
-
+                                    <div class="containerPolizas__flex">
+                                        <div class="polizaTodoRiesgo col-lg-6">
+                                            <h2>poliza <span class="subrayado">todo riesgo</span> </h2> 
+                                            <p>Monto asegurado: $${todoRiesgo.montoAseg}</p> 
+                                            <p>Franquicia: $${todoRiesgo.franquicia}</p> 
+                                            <p>Valor de cuota: $${todoRiesgo.valorCuota}</p>
+                                            <input class="btn2" type="submit" value="Contratá">
+                                        </div>
+    
+                                        <div class="polizaTercerosCompleto col-lg-6">
+                                            <h2>poliza <span class="subrayado">terceros completo</span></h2> 
+                                            <p>Monto asegurado: $${tercerosCompleto.montoAseg}</p> 
+                                            <p>Franquicia: NO </p> 
+                                            <p>Valor de cuota: $${tercerosCompleto.valorCuota}</p>
+                                            <input class="btn2" type="submit" value="Contratá">
+                                        </div>
+                                    </div>`);
 
 
 // PASO 3 
@@ -277,11 +266,11 @@ btnCotizar.addEventListener("submit", enviarData);
                                                                 </div>
                                                                 <div>
                                                                     <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="dni">DNI</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" type="text" name="dni">
+                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputDNI" type="text" name="dni">
                                                                     <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="dress">Direccion</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" type="text" name="direccion">
+                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputDireccion" type="text" name="direccion">
                                                                     <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="cp">CP</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" type="text" name="cp">
+                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputCP" type="text" name="cp">
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -299,13 +288,20 @@ btnCotizar.addEventListener("submit", enviarData);
 
                                                         let usuarioJSON = JSON.parse(sessionStorage.getItem("Datos usuario"));
 
-                                                        let inputName = document.getElementById("inputNameStorage")
-                                                        let inputMail = document.getElementById("inputMailStorage")
-                                                        let inputNumber = document.getElementById("inputNumberStorage")
+                                                        let inputName = document.getElementById("inputNameStorage");
+                                                        let inputMail = document.getElementById("inputMailStorage");
+                                                        let inputNumber = document.getElementById("inputNumberStorage");
 
                                                         inputName.value = usuarioJSON.nombre;
                                                         inputMail.value = usuarioJSON.correo;
                                                         inputNumber.value = usuarioJSON.telefono;
-})}
 
+                                                        $("#inputDNI").change(function (e){
+                                                            let dni = document.getElementById("inputDNI").value
+                                                            console.log(dni)
+                                                            console.log(usuarioJSON);
+                                                            let ulia = usuarioJSON.push(dni)
+                                                        })
+        })
+    })
 });

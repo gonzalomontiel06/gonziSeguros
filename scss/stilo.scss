@@ -136,18 +136,30 @@
 
 // SECTION POLIZA TODO RIESGO Y TR COMPLETO
 
+#sectionPolizas{
+    // display: none;
+    width: 80%;
+    margin-top: 50px;
+}
+
 .containerPolizas{
     display: flex;
     justify-content: center;
 
-    &--subtitulo{
-        @extend .divInicio__container--subtitulo;
-        height: 25px;
-    }
+    &__boxH2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    &--segundoSub{
-        @extend .main__form1--titulo;
-        margin-top: 15px;
+        &--subtitulo{
+            @extend .divInicio__container--subtitulo;
+            height: 25px;
+        }
+    
+        &--segundoSub{
+            @extend .main__form1--titulo;
+            margin-top: 15px;
+        }
     }
 
     &__arrow{
@@ -155,13 +167,11 @@
         justify-content: space-around;
         margin-top: 15px;
     }
-}
 
-#sectionPolizas{
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
+    &__flex{
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 .polizaTodoRiesgo{

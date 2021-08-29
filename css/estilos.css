@@ -35,7 +35,7 @@
       margin-top: 40px;
       margin-bottom: 30px;
       text-align: center; }
-    .divInicio__container--subtitulo, .containerPolizas--subtitulo, .confirmaDatos__container__texto--subtitulo {
+    .divInicio__container--subtitulo, .containerPolizas__boxH2--subtitulo, .confirmaDatos__container__texto--subtitulo {
       font-family: 'Quicksand', sans-serif;
       font-size: 1.3em;
       text-transform: uppercase;
@@ -54,7 +54,7 @@
   margin-top: 50px; }
   .main__form1 {
     width: 19rem; }
-    .main__form1--titulo, .containerPolizas--segundoSub, .confirmaDatos__container__texto--segundoSub, .confirmaDatos__personaYtarjeta__tarjeta--subtitulo {
+    .main__form1--titulo, .containerPolizas__boxH2--segundoSub, .confirmaDatos__container__texto--segundoSub, .confirmaDatos__personaYtarjeta__tarjeta--subtitulo {
       font-family: 'Quicksand', sans-serif;
       font-size: 2em;
       text-align: center; }
@@ -89,23 +89,29 @@
   height: 38px;
   margin-top: 0; }
 
+#sectionPolizas {
+  display: none;
+  width: 80%;
+  margin-top: 50px; }
+
 .containerPolizas {
   display: flex;
   justify-content: center; }
-  .containerPolizas--subtitulo {
-    height: 25px; }
-  .containerPolizas--segundoSub {
-    margin-top: 15px; }
+  .containerPolizas__boxH2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .containerPolizas__boxH2--subtitulo {
+      height: 25px; }
+    .containerPolizas__boxH2--segundoSub {
+      margin-top: 15px; }
   .containerPolizas__arrow {
     display: flex;
     justify-content: space-around;
     margin-top: 15px; }
-
-#sectionPolizas {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 50px; }
+  .containerPolizas__flex {
+    display: flex;
+    justify-content: space-around; }
 
 .polizaTodoRiesgo, .polizaTercerosCompleto {
   width: 24rem;
