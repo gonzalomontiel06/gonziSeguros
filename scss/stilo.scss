@@ -137,7 +137,7 @@
 // SECTION POLIZA TODO RIESGO Y TR COMPLETO
 
 #sectionPolizas{
-    // display: none;
+    display: none;
     width: 80%;
     margin-top: 50px;
 }
@@ -248,7 +248,7 @@
             &__tarjeta{
                 width: 37rem;
                 display: flex;
-                margin-top: 230px;
+                margin-top: 50px;
 
                 &--subtitulo{
                     @extend .confirmaDatos__container__texto--segundoSub;

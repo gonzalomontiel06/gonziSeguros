@@ -20,10 +20,21 @@ class Auto{
     }
 }
 
+class DatosDefinitivos{
+    constructor(nombre, correo, telefono, dni, direccion, cp){
+        this.nombre = nombre
+        this.correo = correo
+        this.telefono = telefono
+        this.dni = dni
+        this.direccion = direccion
+        this.cp = cp;
+    }
+}
+
 // VARIABLES GLOBALES
 
 let añoActual = 2021;
-let clienteDatos = [];
+let clienteDatos = []
 let clienteAuto = {};
 let x
 let y
@@ -31,6 +42,7 @@ let a
 let nombreCliente
 let mailCliente
 let numeroCliente
+let datosClienteCompleto
 
 let todoRiesgo = {
     montoAseg: 0,
@@ -75,84 +87,70 @@ const modelosAuto = [
 
 // EVENTOS DATOS clienteAuto
 
-let marcas = document.getElementById("marcaAutos")
+$("#marcaAutos").change(function (e){
 
-marcas.addEventListener("change", seleccion)
-    function seleccion(event){
-        x = document.getElementById("marcaAutos").value;
+        x = $("#marcaAutos").val();
+        $("#modelos").html("");
+
         if (x == "peugeot"){
-            let selectModelos = document.getElementById("modelos");
             let arrayPeugeot = modelosAuto.filter(marcas => marcas.marca == "peugeot");
             for (const mods of arrayPeugeot){
-                let option = document.createElement("option");
-                option.innerHTML = mods.modelo.toLocaleUpperCase();
-                selectModelos.appendChild(option);
+                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
             }
         }
 
         if (x == "volkswagen"){
-            let selectModelos2 = document.getElementById("modelos");
             let arrayVolkswagen = modelosAuto.filter(marcas => marcas.marca == "volkswagen");
             for (const mods of arrayVolkswagen){
-                let option = document.createElement("option");
-                option.innerHTML = mods.modelo.toLocaleUpperCase();
-                selectModelos2.appendChild(option);
+                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
             }
         }
-    
+
         if (x == "fiat"){
-            let selectModelos3 = document.getElementById("modelos");
             let arrayFiat = modelosAuto.filter(marca => marca.marca == "fiat");
             for (const mods of arrayFiat){
-                let option = document.createElement("option");
-                option.innerHTML = mods.modelo.toLocaleUpperCase();
-                selectModelos3.appendChild(option);
+                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
             }
         }
+
         console.log(`Marca: ${x}`);
-    }
+    })
 
-let mod = document.getElementById("modelos");
+$("#modelos").change(function (e){
+    y = $("#modelos").val();
+    console.log(`Modelo: ${y}`);
+})
 
-mod.addEventListener("change", guardar);
-    function guardar(event){
-        y = document.getElementById("modelos").value;
-        console.log(`Modelo: ${y}`);
-    }
 
-let año = document.getElementById("años");
-
-año.addEventListener("change", fechas);
-    function fechas(event){
-        a = document.getElementById("años").value
-        console.log(`Año: ${a}`);
-    }
+$("#años").change(function (e){
+    a = $("#años").val();
+    console.log(`Año: ${a}`);
+})
 
 // CLASS DATOS CLIENTE
 
 $("#inputName").change(function (e){
-    nombreCliente = document.getElementById("inputName").value;
+    nombreCliente = $("#inputName").val();
     console.log(`Nombre: ${nombreCliente}`);
 });
 
 $("#inputMail").change(function (e){
-    mailCliente = document.getElementById("inputMail").value;
+    mailCliente = $("#inputMail").val();
     console.log(`Correo: ${mailCliente}`);
 });
 
 $("#inputNumber").change(function (e){
-    numeroCliente = document.getElementById("inputNumber").value;
+    numeroCliente = $("#inputNumber").val();
     console.log(`Telefono: ${numeroCliente}`);
     clienteDatos = new Cliente(nombreCliente, mailCliente, numeroCliente);
     console.log(clienteDatos);
 
-    // DATOS CLIENTE LOCAL STORAGE
+// DATOS CLIENTE LOCAL STORAGE
 
     let clienteDatosJSON = JSON.stringify(clienteDatos);
     console.log(clienteDatosJSON);
     sessionStorage.setItem("Datos usuario", clienteDatosJSON);
-    });
-
+});
 
 // FUNCIONES POLIZA TODO RIESGO
 
@@ -207,7 +205,8 @@ $("#cotiza").submit(function (event){
             scrollTop: $(".containerPolizas").offset().top  
         }, "fast");
 
-        $("#sectionPolizas").fadeIn(2000).append(`<div class="containerpolizas__boxH2">
+        $("#sectionPolizas").html("");
+        $("#sectionPolizas").fadeIn(2500).append(`<div class="containerPolizas__boxH2">
                                     <h2 class="containerPolizas__boxH2--subtitulo">paso2</h2>
                                     <h2 class="containerPolizas__boxH2--segundoSub">elegi tu poliza</h2>
                                     </div>
@@ -225,7 +224,7 @@ $("#cotiza").submit(function (event){
                                             <p>Valor de cuota: $${todoRiesgo.valorCuota}</p>
                                             <input class="btn2" type="submit" value="Contratá">
                                         </div>
-    
+
                                         <div class="polizaTercerosCompleto col-lg-6">
                                             <h2>poliza <span class="subrayado">terceros completo</span></h2> 
                                             <p>Monto asegurado: $${tercerosCompleto.montoAseg}</p> 
@@ -241,18 +240,23 @@ $("#cotiza").submit(function (event){
         $(".btn2").click(function (e){
 
             $(`<section class="confirmaDatos container-fluid"></section>`).insertBefore("#idJS");
+
             $("html, body").animate({
                 scrollTop: $(".confirmaDatos").offset().top  
             }, "fast");
 
-                $(".confirmaDatos").append(`<div class="confirmaDatos__container">
-                                                <div class="confirmaDatos__container__texto">
-                                                    <img src="./img/paso1.png" class="img-fluid" alt="imagenForm">
-                                                    <h2 class="confirmaDatos__container__texto--subtitulo">paso 3</h2>
-                                                    <h2 class="confirmaDatos__container__texto--segundoSub">confirmá tus datos</h2>
+                $(".confirmaDatos").html("");
+                $(".confirmaDatos").append(`<div id="divAnimate" style="display:none">
+                                                <div class="confirmaDatos__container">
+                                                    <div class="confirmaDatos__container__texto">
+                                                        <img src="./img/paso1.png" class="img-fluid" alt="imagenForm">
+                                                        <h2 class="confirmaDatos__container__texto--subtitulo">paso 3</h2>
+                                                        <h2 class="confirmaDatos__container__texto--segundoSub">confirmá tus datos</h2>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="confirmaDatos__personaYtarjeta row"></div>`);
+                                                <div class="confirmaDatos__personaYtarjeta row"></div>
+                                            </div>`);
+                                    $("#divAnimate").fadeIn(2500);
 
                                         $(".confirmaDatos__personaYtarjeta").append(`<div class="confirmaDatos__personaYtarjeta__persona col-lg-6">
                                                             <form class="confirmaDatos__personaYtarjeta__persona__form">
@@ -286,21 +290,33 @@ $("#cotiza").submit(function (event){
                                                             </form>
                                                         </div>`);
 
+
+                                                        //  FORMULARIO "CONFIRMA TUS DATOS" 
+
                                                         let usuarioJSON = JSON.parse(sessionStorage.getItem("Datos usuario"));
 
-                                                        let inputName = document.getElementById("inputNameStorage");
-                                                        let inputMail = document.getElementById("inputMailStorage");
-                                                        let inputNumber = document.getElementById("inputNumberStorage");
-
-                                                        inputName.value = usuarioJSON.nombre;
-                                                        inputMail.value = usuarioJSON.correo;
-                                                        inputNumber.value = usuarioJSON.telefono;
+                                                        $("#inputNameStorage").val(usuarioJSON.nombre);
+                                                        $("#inputMailStorage").val(usuarioJSON.correo);
+                                                        $("#inputNumberStorage").val(usuarioJSON.telefono);
 
                                                         $("#inputDNI").change(function (e){
-                                                            let dni = document.getElementById("inputDNI").value
-                                                            console.log(dni)
-                                                            console.log(usuarioJSON);
-                                                            let ulia = usuarioJSON.push(dni)
+                                                            let dni = $("#inputDNI").val();
+                                                            
+                                                            $("#inputDireccion").change(function (e){
+                                                                let direccion = $("#inputDireccion").val();
+                                                                
+                                                                $("#inputCP").change(function (e){
+                                                                    let cp = $("#inputCP").val();
+
+                                                                    datosClienteCompleto = new DatosDefinitivos(usuarioJSON.nombre, usuarioJSON.correo, usuarioJSON.telefono, dni, direccion, cp);
+                                                                    console.log(datosClienteCompleto);
+
+                                                                    // DATOS DEFINITIVOS AL SESSCION STORAGE
+
+                                                                    let datosDefinitivosStorage = JSON.stringify(datosClienteCompleto);
+                                                                    sessionStorage.setItem("Datos definitivos", datosDefinitivosStorage);
+                                                                })
+                                                            })
                                                         })
         })
     })
