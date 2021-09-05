@@ -31,6 +31,16 @@ class DatosDefinitivos{
     }
 }
 
+class DatosTarjeta{
+    constructor(numero, nombre, fecha, codigo, titular){
+        this.numero = numero
+        this.nombre = nombre
+        this.fecha = fecha
+        this.codigo = codigo
+        this.tituar = titular
+    }
+}
+
 // VARIABLES GLOBALES
 
 let añoActual = 2021;
@@ -43,6 +53,8 @@ let nombreCliente
 let mailCliente
 let numeroCliente
 let datosClienteCompleto
+let tarjetaPago
+let URL = "https://jsonplaceholder.typicode.com/posts";
 
 let todoRiesgo = {
     montoAseg: 0,
@@ -222,7 +234,7 @@ $("#cotiza").submit(function (event){
                                             <p>Monto asegurado: $${todoRiesgo.montoAseg}</p> 
                                             <p>Franquicia: $${todoRiesgo.franquicia}</p> 
                                             <p>Valor de cuota: $${todoRiesgo.valorCuota}</p>
-                                            <input class="btn2" type="submit" value="Contratá">
+                                            <input class="btn2" id="btnTodoRiesgo" type="submit" value="Elegir">
                                         </div>
 
                                         <div class="polizaTercerosCompleto col-lg-6">
@@ -230,7 +242,7 @@ $("#cotiza").submit(function (event){
                                             <p>Monto asegurado: $${tercerosCompleto.montoAseg}</p> 
                                             <p>Franquicia: NO </p> 
                                             <p>Valor de cuota: $${tercerosCompleto.valorCuota}</p>
-                                            <input class="btn2" type="submit" value="Contratá">
+                                            <input class="btn2" id="btnTercerosCompleto" type="submit" value="Elegir">
                                         </div>
                                     </div>`);
 
@@ -238,6 +250,11 @@ $("#cotiza").submit(function (event){
 // PASO 3 
 
         $(".btn2").click(function (e){
+
+            $(".containerPolizas__arrow").fadeOut(500);
+            $(".polizaTercerosCompleto").fadeOut(500);
+            $(".polizaTodoRiesgo").fadeOut(500);
+            $(".polizaTodoRiesgo").fadeIn(800);
 
             $(`<section class="confirmaDatos container-fluid"></section>`).insertBefore("#idJS");
 
@@ -256,7 +273,7 @@ $("#cotiza").submit(function (event){
                                                 </div>
                                                 <div class="confirmaDatos__personaYtarjeta row"></div>
                                             </div>`);
-                                    $("#divAnimate").fadeIn(2500);
+                                        $("#divAnimate").fadeIn(2500);
 
                                         $(".confirmaDatos__personaYtarjeta").append(`<div class="confirmaDatos__personaYtarjeta__persona col-lg-6">
                                                             <form class="confirmaDatos__personaYtarjeta__persona__form">
@@ -282,13 +299,17 @@ $("#cotiza").submit(function (event){
                                                         <div class="confirmaDatos__personaYtarjeta__tarjeta col-lg-6">
                                                             <h2 class="confirmaDatos__personaYtarjeta__tarjeta--subtitulo">datos de facturacion</h2>
                                                             <form class="confirmaDatos__personaYtarjeta__tarjeta__form">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="numero" placeholder="numero de tarjeta">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="nombre" placeholder="nombre y apellido">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="fecha" placeholder="mes/año">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="codigo" placeholder="codigo seg">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="dni" placeholder="dni del titular de tarjeta">
+                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="numero" id="numeroTarjeta" placeholder="numero de tarjeta">
+                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="nombre" id="nombreApellido" placeholder="nombre y apellido">
+                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="fecha" id="mesAño" placeholder="mes/año">
+                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="codigo" id="codigo" placeholder="codigo seg">
+                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="dni" id="titular" placeholder="dni del titular de tarjeta">
                                                             </form>
                                                         </div>`);
+
+                                        $("#divAnimate").append(`<div class="confirmaDatos__personaYtarjeta__btn">
+                                                                    <button class="confirmaDatos__personaYtarjeta__btn--estilo" id="btn3">Contratá</button>
+                                                                </div>`)
 
 
                                                         //  FORMULARIO "CONFIRMA TUS DATOS" 
@@ -301,10 +322,10 @@ $("#cotiza").submit(function (event){
 
                                                         $("#inputDNI").change(function (e){
                                                             let dni = $("#inputDNI").val();
-                                                            
+
                                                             $("#inputDireccion").change(function (e){
                                                                 let direccion = $("#inputDireccion").val();
-                                                                
+
                                                                 $("#inputCP").change(function (e){
                                                                     let cp = $("#inputCP").val();
 
@@ -317,6 +338,65 @@ $("#cotiza").submit(function (event){
                                                                     sessionStorage.setItem("Datos definitivos", datosDefinitivosStorage);
                                                                 })
                                                             })
+                                                        })
+
+                                                        $("#numeroTarjeta").change(function(e){
+                                                            let numero = $("#numeroTarjeta").val();
+
+                                                            $("#nombreApellido").change(function(e){
+                                                                let nombreApellido = $("#nombreApellido").val();
+
+                                                                $("#mesAño").change(function(e){
+                                                                    let fechaTarjeta = $("#mesAño").val();
+
+                                                                    $("#codigo").change(function(e){
+                                                                        let codigo = $("#cogido").val();
+
+                                                                        $("#titular").change(function(e){
+                                                                            let titular = $("#titular").val();
+
+                                                                            tarjetaPago = new DatosTarjeta(numero, nombreApellido, fechaTarjeta, codigo, titular);
+                                                                            console.log(tarjetaPago);
+                                                                        })
+                                                                    })
+                                                                })
+                                                            })
+                                                        });
+
+                                                        $("#btn3").click(function (e){
+
+                                                            // DATOS DE CLIENTE A SERVIDOR X AJAX 
+
+                                                            $.ajax({
+                                                                method: "POST",
+                                                                url: URL,
+                                                                data: datosClienteCompleto,
+                                                                success: function(respuesta){
+                                                                    console.log("Datos de cliente enviados al servidor correctamente");
+                                                                }
+                                                            })
+
+                                                            $.ajax({
+                                                                method: "POST",
+                                                                url: URL,
+                                                                data: tarjetaPago,
+                                                                success: function(respuesta){
+                                                                    console.log("Datos de tarjeta enviados al servidor correctamente");
+                                                                }
+                                                            })
+
+                                                            $(".divInicio").hide();
+                                                            $("#mainForm").hide();
+                                                            $(".containerPolizas").hide();
+                                                            $(".confirmaDatos").hide();
+                                                            $(`<section class="containerSuccess">
+                                                                                <div>
+                                                                                    <h2>hello</h2>
+                                                                                    <p>enviamos tu poliza y detalle de cobertura a tu mail, chequealo!</p>
+                                                                                    <button>inicio</button>
+                                                                                </div>
+                                                                            </section>`).insertBefore("#idJS");
+                                                            $(".containerSuccess").show();
                                                         })
         })
     })

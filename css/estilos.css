@@ -75,14 +75,14 @@
         font-family: 'Quicksand', sans-serif;
         text-align: center; }
 
-.btn, .btn2 {
+.btn, .btn2, .confirmaDatos__personaYtarjeta__btn--estilo {
   width: 100px;
   border-radius: 10px;
   margin-top: 20px;
   border: solid 1px #ff8fa3;
   background-color: white;
   font-family: 'Quicksand', sans-serif; }
-  .btn:hover, .btn2:hover {
+  .btn:hover, .btn2:hover, .confirmaDatos__personaYtarjeta__btn--estilo:hover {
     background-color: #ff4d6d; }
 
 .btn2 {
@@ -111,7 +111,8 @@
     margin-top: 15px; }
   .containerPolizas__flex {
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-around;
+    height: 19rem; }
 
 .polizaTodoRiesgo, .polizaTercerosCompleto {
   width: 24rem;
@@ -153,6 +154,7 @@
   .confirmaDatos__personaYtarjeta__tarjeta {
     width: 37rem;
     display: flex;
+    align-items: center;
     margin-top: 50px; }
     .confirmaDatos__personaYtarjeta__tarjeta__form {
       display: flex;
@@ -164,3 +166,17 @@
         border-bottom: solid 1px #ff8fa3;
         font-family: 'Quicksand', sans-serif;
         font-style: italic; }
+  .confirmaDatos__personaYtarjeta__btn {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .confirmaDatos__personaYtarjeta__btn--estilo {
+      margin: 0;
+      height: 38px; }
+
+.containerSuccess {
+  display: none;
+  background-image: url(./img/fondosuccess.jpg);
+  height: 500px; }
