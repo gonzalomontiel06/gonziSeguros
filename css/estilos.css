@@ -40,7 +40,7 @@
       font-size: 1.3em;
       text-transform: uppercase;
       margin-top: 10px;
-      border-bottom: solid 1px #ff8fa3;
+      border-bottom: solid 2px #ff7fa3;
       text-align: center;
       width: 193px; }
     .divInicio__container--img {
@@ -70,8 +70,8 @@
         margin: 2px;
         border-radius: 7px;
         border: none;
-        border-left: solid 1px #ff8fa3;
-        border-bottom: solid 1px #ff8fa3;
+        border-left: solid 1px #ff7fa3;
+        border-bottom: solid 2px #ff7fa3;
         font-family: 'Quicksand', sans-serif;
         text-align: center; }
 
@@ -79,7 +79,7 @@
   width: 100px;
   border-radius: 10px;
   margin-top: 20px;
-  border: solid 1px #ff8fa3;
+  border: solid 1px #ff4d6d;
   background-color: white;
   font-family: 'Quicksand', sans-serif; }
   .btn:hover, .btn2:hover, .confirmaDatos__personaYtarjeta__btn--estilo:hover {
@@ -155,7 +155,7 @@
     width: 37rem;
     display: flex;
     align-items: center;
-    margin-top: 50px; }
+    margin-top: 75px; }
     .confirmaDatos__personaYtarjeta__tarjeta__form {
       display: flex;
       flex-direction: column; }
@@ -163,7 +163,7 @@
         width: 17rem;
         margin: 2px;
         border: none;
-        border-bottom: solid 1px #ff8fa3;
+        border-bottom: solid 2px #ff8fa3;
         font-family: 'Quicksand', sans-serif;
         font-style: italic; }
   .confirmaDatos__personaYtarjeta__btn {
@@ -177,6 +177,39 @@
       height: 38px; }
 
 .containerSuccess {
-  display: none;
-  background-image: url(./img/fondosuccess.jpg);
-  height: 500px; }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50rem; }
+  .containerSuccess--animate {
+    display: none; }
+    .containerSuccess--animate2 {
+      display: none; }
+  .containerSuccess__radius {
+    width: 50rem;
+    height: 46rem;
+    border-top: solid 48px #ff4d6d;
+    border-right: solid 132px #ff4d6d;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .containerSuccess__radius--subtitulo {
+      width: 320px; }
+      .containerSuccess__radius--subtitulo-1 {
+        font-size: 13rem;
+        font-family: fantasy;
+        text-transform: uppercase; }
+    .containerSuccess__radius--parrafo {
+      width: 320px;
+      font-size: 3rem;
+      font-family: 'Quicksand'; }
+
+#span {
+  color: #ff4d6d; }
+
+#divAnimate {
+  margin-top: 50px; }
+
+#marcaAutos {
+  margin-top: 9px; }
