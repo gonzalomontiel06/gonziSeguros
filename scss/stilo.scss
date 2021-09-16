@@ -121,6 +121,7 @@
     border: solid 1px #ff4d6d;
     background-color: white;
     font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
 
 
     &:hover{
@@ -172,6 +173,13 @@
         display: flex;
         justify-content: space-around;
         height: 19rem;
+
+        &--btn{
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            width: 100px;
+        }
     }
 }
 
@@ -215,78 +223,76 @@
             &--segundoSub{
                 @extend .main__form1--titulo;
                 margin-top: 15px;
+                margin-bottom: 20px;
                 width: 17em;
             }
         }
     }
 
     &__personaYtarjeta{
-        display: flex;
-        justify-content: center;
-        
-            &__persona{
-            width: 37rem;
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
-            text-align: center;
-            margin-top: 50px;
-            
-                &__form{
-                    display: flex;
 
-                    &--label{
-                        @extend .main__form1--form--label;
-                        text-align: center;
-                    }
+        &__form{
+            width: 100%;
+            margin-top: 30px;
 
-                    &--input{
-                        @extend .main__form1--form--input;
-                    }
-                }
-            }
-            
-            &__tarjeta{
-                width: 37rem;
+            &__datosPersonales{
+                width: 19rem;
                 display: flex;
-                align-items: center;
-                margin-top: 75px;
+                flex-direction: column;
 
-                &--subtitulo{
-                    @extend .confirmaDatos__container__texto--segundoSub;
-                }
-
-                &__form{
+                &-2{
+                    width: 19rem;
                     display: flex;
                     flex-direction: column;
-                    
+                }
 
-                    &--input{
-                        width: 17rem;
-                        margin: 2px;
-                        border: none;
-                        border-bottom: solid 2px #ff8fa3;
-                        font-family: 'Quicksand', sans-serif;
-                        font-style: italic;
-                    }
+                &--label{
+                    font-family: 'Quicksand', sans-serif;
+                    text-align: center
+                }
+
+                &--input{
+                    @extend .main__form1--form--input;
+                }
+            }
+
+            &__datosTarjeta{
+                width: 30rem;
+                display: flex;
+                margin-top: 12px;
+                margin-left: 100px;
+
+                &--subtitulo{
+                    @extend .containerPolizas__boxH2--segundoSub;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &--input{
+                    border: none;
+                    border-bottom: solid 2px #ff8fa3;
+                    font-family: 'Quicksand', sans-serif;
+                    font-style: italic;
+                    width: 17rem;
+                    margin: 3px;
                 }
             }
 
             &__btn{
-                height: 150px;
                 display: flex;
-                flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                height: 130px;
 
                 &--estilo{
                     @extend .btn;
-                    margin: 0;
-                    height: 38px;
+                    height: 40px;
                 }
             }
         }
     }
+}
+
 
 // PASO 4 - SUCCESS
 
@@ -342,4 +348,13 @@
 
 #marcaAutos{
     margin-top: 9px;
+}
+
+#inputMargin{
+    margin-left: 30px;
+}
+
+#reinicio{
+    @extend .btn;
+    margin-bottom: 40px;
 }

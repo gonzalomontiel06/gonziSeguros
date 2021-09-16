@@ -48,7 +48,7 @@ class DatosTarjeta{
 
 let añoActual = 2021;
 let clienteDatos = []
-let clienteAuto = {};
+let clienteAuto = {}
 let x
 let y
 let a
@@ -58,6 +58,14 @@ let numeroCliente
 let datosClienteCompleto
 let tarjetaPago
 let URL = "https://jsonplaceholder.typicode.com/posts";
+let numeroTarjeta
+let nombreYApellidoTarjeta
+let mesAñoTarjeta
+let codigoTarjeta
+let dniTarjeta
+let dniCliente
+let direccionCliente
+let cpCliente
 
 let todoRiesgo = {
     montoAseg: 0,
@@ -104,32 +112,33 @@ const modelosAuto = [
 
 $("#marcaAutos").change(function (e){
 
-        x = $("#marcaAutos").val();
-        $("#modelos").html("");
+    x = $("#marcaAutos").val();
 
-        if (x == "peugeot"){
-            let arrayPeugeot = modelosAuto.filter(marcas => marcas.marca == "peugeot");
-            for (const mods of arrayPeugeot){
-                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
-            }
+    $("#modelos").html("");
+
+    if (x == "peugeot"){
+        let arrayPeugeot = modelosAuto.filter(marcas => marcas.marca == "peugeot");
+        for (const mods of arrayPeugeot){
+            $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
+    }
 
-        if (x == "volkswagen"){
-            let arrayVolkswagen = modelosAuto.filter(marcas => marcas.marca == "volkswagen");
-            for (const mods of arrayVolkswagen){
-                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
-            }
+    if (x == "volkswagen"){
+        let arrayVolkswagen = modelosAuto.filter(marcas => marcas.marca == "volkswagen");
+        for (const mods of arrayVolkswagen){
+            $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
+    }
 
-        if (x == "fiat"){
-            let arrayFiat = modelosAuto.filter(marca => marca.marca == "fiat");
-            for (const mods of arrayFiat){
-                $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
-            }
+    if (x == "fiat"){
+        let arrayFiat = modelosAuto.filter(marca => marca.marca == "fiat");
+        for (const mods of arrayFiat){
+            $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
+    }
 
-        console.log(`Marca: ${x}`);
-    })
+    console.log(`Marca: ${x}`);
+})
 
 $("#modelos").change(function (e){
     y = $("#modelos").val();
@@ -157,20 +166,12 @@ $("#inputMail").change(function (e){
 $("#inputNumber").change(function (e){
     numeroCliente = $("#inputNumber").val();
     console.log(`Telefono: ${numeroCliente}`);
-    clienteDatos = new Cliente(nombreCliente, mailCliente, numeroCliente);
-    console.log(clienteDatos);
-
-// DATOS CLIENTE LOCAL STORAGE
-
-    let clienteDatosJSON = JSON.stringify(clienteDatos);
-    console.log(clienteDatosJSON);
-    sessionStorage.setItem("Datos usuario", clienteDatosJSON);
 });
 
 // FUNCIONES POLIZA TODO RIESGO
 
 function añoAuto(añoHoy, año) { 
-    return añoActual = añoHoy - año
+    return añoActual = añoHoy - año;
 }
 
 function montoAseg(valor) {
@@ -200,56 +201,45 @@ function valorCuotaTerceros() {
 
 // PASO 2 
 
-
 $("#cotiza").submit(function (event){
+
     event.preventDefault();
 
-        if (($("#inputName").val() == "") || ($("#inputName").val() == null)) {
-            SnackBar({
-                message: `Complete "<b>Nombre y Apellido</b>"`,
-                status: `error`,
-                position: `bl`
-            })
-        }
+    clienteDatos = new Cliente(nombreCliente, mailCliente, numeroCliente);
+    console.log(clienteDatos);
 
-        if (($("#inputMail").val() == "") || ($("#inputMail").val() == null)) {
-            SnackBar({
-                message: `Complete "<b>Correo Electronico</b>"`,
-                status: `error`,
-                position: `bl`
-            })
-        }
+    // DATOS CLIENTE LOCAL STORAGE
 
-        if (($("#inputNumber").val() == "") || ($("#inputNumber").val() == null)){
-            SnackBar({
-                message: `Complete "<b>Telefono</b>"`,
-                status: `error`,
-                position: `bl`
-            })
-        }
+    let clienteDatosJSON = JSON.stringify(clienteDatos);
+    console.log(clienteDatosJSON);
+    sessionStorage.setItem("Datos usuario", clienteDatosJSON);
 
-        else {
-        clienteAuto = new Auto(x, y, a);
-        console.log(clienteAuto);
 
-        añoAuto(añoActual, clienteAuto.año);
-        clienteAuto.modelo = modelosAuto.find(auto => auto.modelo.toLocaleUpperCase() == clienteAuto.modelo);
-        montoAseg(clienteAuto.modelo.precio);
-        franquicia();
-        valorCuota();
+    clienteAuto = new Auto(x, y, a);
+    console.log(clienteAuto);
 
-        montoAsegTerceros(clienteAuto.modelo.precio);
-        valorCuotaTerceros();
+    añoAuto(añoActual, clienteAuto.año);
+    clienteAuto.modelo = modelosAuto.find(auto => auto.modelo.toLocaleUpperCase() == clienteAuto.modelo);
+    montoAseg(clienteAuto.modelo.precio);
+    franquicia();
+    valorCuota();
 
-        $("html, body").animate({
-            scrollTop: $(".containerPolizas").offset().top  
-        }, "fast");
+    montoAsegTerceros(clienteAuto.modelo.precio);
+    valorCuotaTerceros();
 
-        $("#sectionPolizas").html("");
-        $("#sectionPolizas").fadeIn(2500).append(`<div class="containerPolizas__boxH2">
-                                    <h2 class="containerPolizas__boxH2--subtitulo">paso2</h2>
-                                    <h2 class="containerPolizas__boxH2--segundoSub">elegi tu poliza</h2>
-                                    </div>
+    $("#formCotiza").fadeOut(500);
+    $("#formDatos").fadeOut(500);
+    $("#formDatos").fadeIn(500);
+
+    $("html, body").animate({
+        scrollTop: $(".containerPolizas").offset().top  
+    }, "fast");
+
+    $("#sectionPolizas").html("");
+    $("#sectionPolizas").fadeIn(2500).append(`<div class="containerPolizas__boxH2">
+                                <h2 class="containerPolizas__boxH2--subtitulo">paso2</h2>
+                                <h2 class="containerPolizas__boxH2--segundoSub">elegi tu poliza</h2>
+                                </div>
 
                                     <div class="containerPolizas__arrow col-lg-12">
                                         <img src="./img/flechaizquierda.png" alt="flechaIzquierda">
@@ -257,7 +247,7 @@ $("#cotiza").submit(function (event){
                                     </div>
 
                                     <div class="containerPolizas__flex">
-                                        <div class="polizaTodoRiesgo col-lg-6">
+                                        <div class="polizaTodoRiesgo col-lg-4">
                                             <h2>poliza <span class="subrayado">todo riesgo</span> </h2> 
                                             <p>Monto asegurado: $${todoRiesgo.montoAseg}</p> 
                                             <p>Franquicia: $${todoRiesgo.franquicia}</p> 
@@ -265,20 +255,28 @@ $("#cotiza").submit(function (event){
                                             <input class="btn2" id="btnTodoRiesgo" type="submit" value="Elegir">
                                         </div>
 
-                                        <div class="polizaTercerosCompleto col-lg-6">
+                                    <div class="containerPolizas__flex--btn col-lg-4">
+                                        <button id="reinicio">Cotizar nuevamente</button>
+                                    </div>
+
+                                        <div class="polizaTercerosCompleto col-lg-4">
                                             <h2>poliza <span class="subrayado">terceros completo</span></h2> 
                                             <p>Monto asegurado: $${tercerosCompleto.montoAseg}</p> 
                                             <p>Franquicia: NO </p> 
                                             <p>Valor de cuota: $${tercerosCompleto.valorCuota}</p>
                                             <input class="btn2" id="btnTercerosCompleto" type="submit" value="Elegir">
                                         </div>
-                                    </div>`)}; 
+                                    </div>`)
 
+                                    $("#reinicio").click(function (e){
+                                        location.reload();
+                                    });
 
 // PASO 3 
 
             $(".btn2").click(function (e){
 
+                $(".containerPolizas__flex--btn").fadeOut(500);
                 $(".containerPolizas__arrow").fadeOut(500);
                 $(".polizaTercerosCompleto").fadeOut(500);
                 $(".polizaTodoRiesgo").fadeOut(500);
@@ -288,7 +286,7 @@ $("#cotiza").submit(function (event){
                     "align-items": "center"
                 });
 
-            $(`<section class="confirmaDatos container-fluid"></section>`).insertBefore("#idJS");
+            $(`<section class="confirmaDatos"></section>`).insertBefore("#idJS");
 
             $("html, body").animate({
                 scrollTop: $(".confirmaDatos").offset().top  
@@ -303,46 +301,43 @@ $("#cotiza").submit(function (event){
                                                         <h2 class="confirmaDatos__container__texto--segundoSub">confirmá tus datos</h2>
                                                     </div>
                                                 </div>
-                                                <div class="confirmaDatos__personaYtarjeta row"></div>
+                                                <div class="confirmaDatos__personaYtarjeta container"></div>
                                             </div>`);
                                         $("#divAnimate").fadeIn(2500);
 
-                                        $(".confirmaDatos__personaYtarjeta").append(`<div class="confirmaDatos__personaYtarjeta__persona col-lg-6">
-                                                            <form class="confirmaDatos__personaYtarjeta__persona__form">
-                                                                <div>
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="nombre">Nombre completo</label>
-                                                                        <input id="inputNameStorage" class="confirmaDatos__personaYtarjeta__persona__form--input" type="text" name="nombre" value="">
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="mail">Correo Electronico</label>
-                                                                        <input id="inputMailStorage" class="confirmaDatos__personaYtarjeta__persona__form--input" type="text" name="mail">
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="number">Telefono</label>
-                                                                        <input id="inputNumberStorage" class="confirmaDatos__personaYtarjeta__persona__form--input" type="tel" name="phone">
-                                                                </div>
-                                                                <div>
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="dni">DNI</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputDNI" type="text" name="dni">
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="dress">Direccion</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputDireccion" type="text" name="direccion">
-                                                                    <label class="confirmaDatos__personaYtarjeta__persona__form--label" for="cp">CP</label>
-                                                                        <input class="confirmaDatos__personaYtarjeta__persona__form--input" id="inputCP" type="text" name="cp">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-                                                        <div class="confirmaDatos__personaYtarjeta__tarjeta col-lg-6">
-                                                            <h2 class="confirmaDatos__personaYtarjeta__tarjeta--subtitulo">datos de facturacion</h2>
-                                                            <form class="confirmaDatos__personaYtarjeta__tarjeta__form">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="numero" id="numeroTarjeta" placeholder="numero de tarjeta">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="nombre" id="nombreApellido" placeholder="nombre y apellido">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="fecha" id="mesAño" placeholder="mes/año">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="codigo" id="codigo" placeholder="codigo seg">
-                                                                <input class="confirmaDatos__personaYtarjeta__tarjeta__form--input" type="text" name="dni" id="titular" placeholder="dni del titular de tarjeta">
-                                                            </form>
-                                                        </div>`);
-
-                                        $("#divAnimate").append(`<div class="confirmaDatos__personaYtarjeta__btn">
-                                                                    <button class="confirmaDatos__personaYtarjeta__btn--estilo" id="btn3">Contratá</button>
-                                                                </div>`)
-
+                                        $(".confirmaDatos__personaYtarjeta").append(
+                                            `<form class="confirmaDatos__personaYtarjeta__form row" id="btn3" autocomplete="off">
+                                                <div class="confirmaDatos__personaYtarjeta__form__datosPersonales col-lg-4">
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="nombre">Nombre completo</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputNameStorage" type="text" name="nombre" value="" required>
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="mail">Correo Electronico</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputMailStorage" type="text" name="mail" required>
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="number">Telefono</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputNumberStorage" type="tel" name="phone" required>
+                                                </div>
+                                                <div class="confirmaDatos__personaYtarjeta__form__datosPersonales-2 col-lg-4">
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="dni">DNI</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputDNI" type="text" name="dni" minlength="7" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" / required>
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="dress">Direccion</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputDireccion" type="text" name="direccion" required>
+                                                    <label class="confirmaDatos__personaYtarjeta__form__datosPersonales--label" for="cp">CP</label>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosPersonales--input" id="inputCP" type="text" name="cp" minlength="3" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" / required>
+                                                </div>
+                                                <div class="confirmaDatos__personaYtarjeta__form__datosTarjeta col-lg-4">
+                                                    <h2 class="confirmaDatos__personaYtarjeta__form__datosTarjeta--subtitulo">datos de facturacion</h2>
+                                                    <div id="inputMargin">    
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosTarjeta--input" type="text" name="numero" id="numeroTarjeta" placeholder="numero de tarjeta" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" / required>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosTarjeta--input" type="text" name="nombre" id="nombreApellido" placeholder="nombre titular" required>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosTarjeta--input" type="text" name="fecha" id="mesAño" placeholder="mes/año" required>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosTarjeta--input" type="text" name="codigo" id="codigo" placeholder="codigo seg" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" / required>
+                                                        <input class="confirmaDatos__personaYtarjeta__form__datosTarjeta--input" type="text" name="dni" id="titular" placeholder="dni titular de tarjeta" minlength="7" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" / required>
+                                                    </div>
+                                                </div>
+                                                <div class="confirmaDatos__personaYtarjeta__form__btn col-lg-12">
+                                                    <button class="confirmaDatos__personaYtarjeta__form__btn--estilo">Contratá</button>
+                                                </div>
+                                            </form`
+                                        );
 
                                                         //  FORMULARIO "CONFIRMA TUS DATOS" 
 
@@ -353,116 +348,92 @@ $("#cotiza").submit(function (event){
                                                         $("#inputNumberStorage").val(usuarioJSON.telefono);
 
                                                         $("#inputDNI").change(function (e){
-                                                            let dni = $("#inputDNI").val();
+                                                            dniCliente = $("#inputDNI").val();
 
                                                             $("#inputDireccion").change(function (e){
-                                                                let direccion = $("#inputDireccion").val();
+                                                                direccionCliente = $("#inputDireccion").val();
 
                                                                 $("#inputCP").change(function (e){
-                                                                    let cp = $("#inputCP").val();
-
-                                                                    datosClienteCompleto = new DatosDefinitivos(usuarioJSON.nombre, usuarioJSON.correo, usuarioJSON.telefono, dni, direccion, cp);
-                                                                    console.log(datosClienteCompleto);
-
-                                                                    // DATOS DEFINITIVOS AL SESSION STORAGE
-
-                                                                    let datosDefinitivosStorage = JSON.stringify(datosClienteCompleto);
-                                                                    sessionStorage.setItem("Datos definitivos", datosDefinitivosStorage);
+                                                                    cpCliente = $("#inputCP").val();
                                                                 })
                                                             })
                                                         })
 
                                                         $("#numeroTarjeta").change(function(e){
-                                                            let numero = $("#numeroTarjeta").val();
+                                                            numeroTarjeta = $("#numeroTarjeta").val();
 
                                                             $("#nombreApellido").change(function(e){
-                                                                let nombreApellido = $("#nombreApellido").val();
+                                                                nombreYApellidoTarjeta = $("#nombreApellido").val();
 
                                                                 $("#mesAño").change(function(e){
-                                                                    let fechaTarjeta = $("#mesAño").val();
+                                                                    mesAñoTarjeta = $("#mesAño").val();
 
                                                                     $("#codigo").change(function(e){
-                                                                        let codigo = $("#codido").val();
+                                                                        codigoTarjeta = $("#codido").val();
 
                                                                         $("#titular").change(function(e){
-                                                                            let titular = $("#titular").val();
-
-                                                                            tarjetaPago = new DatosTarjeta(numero, nombreApellido, fechaTarjeta, codigo, titular);
-                                                                            console.log(tarjetaPago);
+                                                                            dniTarjeta = $("#titular").val();
                                                                         })
                                                                     })
                                                                 })
                                                             })
                                                         });
 
-                                                        $("#btn3").click(function (e){
+                                                        $("#btn3").submit(function (event){
 
-                                                            if (($("#inputDNI").val() == "") || ($("#inputDNI").val() == null)) {
-                                                                SnackBar({
-                                                                    message: `Complete "<b>DNI</b>"`,
-                                                                    status: `error`,
-                                                                    position: `bl`
-                                                                })
-                                                            }
+                                                            event.preventDefault(); 
 
-                                                            if (($("#inputDireccion").val() == "") || ($("#inputDireccion").val() == null)) {
-                                                                SnackBar({
-                                                                    message: `Complete "<b>Direccion</b>"`,
-                                                                    status: `error`,
-                                                                    position: `bl`
-                                                                })
-                                                            }
+                                                            datosClienteCompleto = new DatosDefinitivos(usuarioJSON.nombre, usuarioJSON.correo, usuarioJSON.telefono, dniCliente, direccionCliente, cpCliente);
+                                                            console.log(datosClienteCompleto);
 
-                                                            if (($("#inputCP").val() == "") || ($("#inputCP").val() == null)) {
-                                                                SnackBar({
-                                                                    message: `Complete "<b>Codigo postal</b>"`,
-                                                                    status: `error`,
-                                                                    position: `bl`
-                                                                })
-                                                            }
+                                                            // DATOS DEFINITIVOS AL SESSION STORAGE
 
-                                                            // DATOS DE CLIENTE A SERVIDOR X AJAX 
+                                                            let datosDefinitivosStorage = JSON.stringify(datosClienteCompleto);
+                                                            sessionStorage.setItem("Datos definitivos", datosDefinitivosStorage);
 
-                                                            else{
+                                                            tarjetaPago = new DatosTarjeta(numeroTarjeta, nombreYApellidoTarjeta, mesAñoTarjeta, codigoTarjeta, dniTarjeta);
+                                                            console.log(tarjetaPago);
 
-                                                                $.ajax({
-                                                                    method: "POST",
-                                                                    url: URL,
-                                                                    data: datosClienteCompleto,
-                                                                    success: function(respuesta){
-                                                                        console.log("Datos de cliente enviados al servidor correctamente");
-                                                                    }
-                                                                })
+                                                            // DATOS DE CLIENTE A SERVIDOR X AJAX
 
-                                                                $.ajax({
-                                                                    method: "POST",
-                                                                    url: URL,
-                                                                    data: tarjetaPago,
-                                                                    success: function(respuesta){
-                                                                        console.log("Datos de tarjeta enviados al servidor correctamente");
-                                                                    }
-                                                                })
+                                                            $.ajax({
+                                                                method: "POST",
+                                                                url: URL,
+                                                                data: datosClienteCompleto,
+                                                                success: function(respuesta){
+                                                                    console.log("Datos de cliente enviados al servidor correctamente");
+                                                                }
+                                                            })
 
-                                                                $(".divInicio").hide();
-                                                                $("#mainForm").hide();
-                                                                $(".containerPolizas").hide();
-                                                                $(".confirmaDatos").hide();
-                                                                $(`<section class="containerSuccess">
-                                                                        <div class="containerSuccess--animate">
-                                                                            <div class="containerSuccess--animate2">
-                                                                                <div class="containerSuccess__radius">
-                                                                                    <div class="containerSuccess__radius--subtitulo">
-                                                                                        <h2 class="containerSuccess__radius--subtitulo-1">he</h2>
-                                                                                        <h2 class="containerSuccess__radius--subtitulo-1">llo<span id="span">.</span></h2>
-                                                                                    </div>
-                                                                                    <p class="containerSuccess__radius--parrafo">enviamos tu poliza y detalle de cobertura a tu correo</p>
+                                                            $.ajax({
+                                                                method: "POST",
+                                                                url: URL,
+                                                                data: tarjetaPago,
+                                                                success: function(respuesta){
+                                                                    console.log("Datos de tarjeta enviados al servidor correctamente");
+                                                                }
+                                                            })
+
+                                                            $(".divInicio").hide();
+                                                            $("#mainForm").hide();
+                                                            $(".containerPolizas").hide();
+                                                            $(".confirmaDatos").hide();
+                                                            $(`<section class="containerSuccess">
+                                                                    <div class="containerSuccess--animate">
+                                                                        <div class="containerSuccess--animate2">
+                                                                            <div class="containerSuccess__radius">
+                                                                                <div class="containerSuccess__radius--subtitulo">
+                                                                                    <h2 class="containerSuccess__radius--subtitulo-1">he</h2>
+                                                                                    <h2 class="containerSuccess__radius--subtitulo-1">llo<span id="span">.</span></h2>
                                                                                 </div>
+                                                                                <p class="containerSuccess__radius--parrafo">enviamos tu poliza y detalle de cobertura a tu correo</p>
                                                                             </div>
                                                                         </div>
-                                                                    </section>`).insertBefore("#idJS");
-                                                                $(".containerSuccess--animate").fadeIn(2500);
-                                                                $(".containerSuccess--animate2").slideDown(1500)
-                                                        }})    
+                                                                    </div>
+                                                                </section>`).insertBefore("#idJS");
+                                                            $(".containerSuccess--animate").fadeIn(2500);
+                                                            $(".containerSuccess--animate2").slideDown(1500)
+                                                        })    
         })    
     })
 });
