@@ -114,6 +114,7 @@ $("#marcaAutos").change(function (e){
 
     if (x == "peugeot"){
         let arrayPeugeot = modelosAuto.filter(marcas => marcas.marca == "peugeot");
+        $("#modelos").append(`<option value="modelo">Seleccione modelo..</option>`)
         for (const mods of arrayPeugeot){
             $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
@@ -121,6 +122,7 @@ $("#marcaAutos").change(function (e){
 
     if (x == "volkswagen"){
         let arrayVolkswagen = modelosAuto.filter(marcas => marcas.marca == "volkswagen");
+        $("#modelos").append(`<option value="modelo">Seleccione modelo..</option>`)
         for (const mods of arrayVolkswagen){
             $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
@@ -128,6 +130,7 @@ $("#marcaAutos").change(function (e){
 
     if (x == "fiat"){
         let arrayFiat = modelosAuto.filter(marca => marca.marca == "fiat");
+        $("#modelos").append(`<option value="modelo">Seleccione modelo..</option>`)
         for (const mods of arrayFiat){
             $("#modelos").append(`<option>${mods.modelo.toLocaleUpperCase()}</option>`)
         }
