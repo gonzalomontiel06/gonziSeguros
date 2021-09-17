@@ -32,7 +32,7 @@ body {
       font-size: 1.3em;
       text-transform: uppercase;
       margin-top: 10px;
-      border-bottom: solid 2px #b5838d;
+      border-bottom: solid 2px #800f2f;
       text-align: center;
       width: 193px;
       font-weight: bold; }
@@ -66,9 +66,10 @@ body {
         margin: 2px;
         border-radius: 7px;
         border: none;
-        border-left: solid 1px #b5838d;
-        border-bottom: solid 2px #b5838d;
+        border-left: solid 1px #800f2f;
+        border-bottom: solid 2px #800f2f;
         font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
         text-align: center;
         background-color: transparent; }
 
@@ -76,7 +77,7 @@ body {
   width: 100px;
   border-radius: 10px;
   margin-top: 20px;
-  border: solid 1px #b5838d;
+  border: solid 1px #800f2f;
   background-color: white;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
@@ -84,7 +85,7 @@ body {
   position: relative;
   left: 150px; }
   .btn:hover, .btn2:hover, .confirmaDatos__personaYtarjeta__form__btn--estilo:hover {
-    background-color: #b5838d; }
+    background-color: #800f2f; }
 
 .btn2 {
   height: 38px;
@@ -127,7 +128,7 @@ body {
     font-weight: bold; }
 
 .subrayado {
-  border-bottom: solid 4px #b5838d; }
+  border-bottom: solid 4px #800f2f; }
 
 .confirmaDatos__container {
   display: flex;
@@ -161,15 +162,13 @@ body {
     width: 30rem;
     display: flex;
     margin-top: 12px;
-    margin-left: 100px;
-    background-color: #b5838d;
-    border-radius: 40px; }
+    margin-left: 100px; }
     .confirmaDatos__personaYtarjeta__form__datosTarjeta--subtitulo {
       display: flex;
       align-items: center; }
     .confirmaDatos__personaYtarjeta__form__datosTarjeta--input {
       border: none;
-      border-bottom: solid 2px #b5838d;
+      border-bottom: solid 2px #800f2f;
       font-family: 'Quicksand', sans-serif;
       font-style: italic;
       font-weight: bold;
@@ -183,8 +182,7 @@ body {
     height: 130px; }
     .confirmaDatos__personaYtarjeta__form__btn--estilo {
       height: 40px;
-      left: 0;
-      background-color: #b5838d; }
+      left: 0; }
 
 .containerSuccess {
   width: 100%;
@@ -199,8 +197,8 @@ body {
   .containerSuccess__radius {
     width: 50rem;
     height: 46rem;
-    border-top: solid 48px #ff4d6d;
-    border-right: solid 132px #ff4d6d;
+    border-top: solid 48px #800f2f;
+    border-right: solid 132px #800f2f;
     display: flex;
     justify-content: center;
     align-items: center; }
@@ -216,7 +214,7 @@ body {
       font-family: 'Quicksand'; }
 
 #span {
-  color: #ff4d6d; }
+  color: #800f2f; }
 
 #divAnimate {
   margin-top: 50px; }
