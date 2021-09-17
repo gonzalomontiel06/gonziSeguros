@@ -5,23 +5,14 @@
   list-style: none;
   text-decoration: none; }
 
+body {
+  background-image: url(../img/auuto.jpg); }
+
 .header {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-image: url(../img/auto.jpg);
-  background-size: 100% 40rem;
-  position: relative; }
-  .header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6); }
-  .header__imgLogo {
-    position: relative; }
+  height: 350px; }
 
 .divInicio {
   display: flex;
@@ -34,15 +25,17 @@
       font-size: 2em;
       margin-top: 40px;
       margin-bottom: 30px;
-      text-align: center; }
+      text-align: center;
+      font-weight: bold; }
     .divInicio__container--subtitulo, .containerPolizas__boxH2--subtitulo, .confirmaDatos__container__texto--subtitulo {
       font-family: 'Quicksand', sans-serif;
       font-size: 1.3em;
       text-transform: uppercase;
       margin-top: 10px;
-      border-bottom: solid 2px #ff7fa3;
+      border-bottom: solid 2px #b5838d;
       text-align: center;
-      width: 193px; }
+      width: 193px;
+      font-weight: bold; }
     .divInicio__container--img {
       width: 80px;
       height: 64px; }
@@ -51,44 +44,52 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px; }
+  margin-top: 50px;
+  margin-bottom: 25px; }
   .main__form1 {
     width: 19rem; }
     .main__form1--titulo, .containerPolizas__boxH2--segundoSub, .confirmaDatos__personaYtarjeta__form__datosTarjeta--subtitulo, .confirmaDatos__container__texto--segundoSub {
       font-family: 'Quicksand', sans-serif;
       font-size: 2em;
-      text-align: center; }
+      text-align: center;
+      font-weight: bold; }
     .main__form1--form {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 30px; }
       .main__form1--form--label {
-        font-family: 'Quicksand', sans-serif; }
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold; }
       .main__form1--form--input, .main__form1--form--input2, .confirmaDatos__personaYtarjeta__form__datosPersonales--input {
         width: 17rem;
         margin: 2px;
         border-radius: 7px;
         border: none;
-        border-left: solid 1px #ff7fa3;
-        border-bottom: solid 2px #ff7fa3;
+        border-left: solid 1px #b5838d;
+        border-bottom: solid 2px #b5838d;
         font-family: 'Quicksand', sans-serif;
-        text-align: center; }
+        text-align: center;
+        background-color: transparent; }
 
-.btn, .btn2, .confirmaDatos__personaYtarjeta__form__btn--estilo, #reinicio {
+.btn, .btn2, .confirmaDatos__personaYtarjeta__form__btn--estilo {
   width: 100px;
   border-radius: 10px;
   margin-top: 20px;
-  border: solid 1px #ff4d6d;
+  border: solid 1px #b5838d;
   background-color: white;
   font-family: 'Quicksand', sans-serif;
-  font-weight: bold; }
-  .btn:hover, .btn2:hover, .confirmaDatos__personaYtarjeta__form__btn--estilo:hover, #reinicio:hover {
-    background-color: #ff4d6d; }
+  font-weight: bold;
+  background-color: transparent;
+  position: relative;
+  left: 150px; }
+  .btn:hover, .btn2:hover, .confirmaDatos__personaYtarjeta__form__btn--estilo:hover {
+    background-color: #b5838d; }
 
 .btn2 {
   height: 38px;
-  margin-top: 0; }
+  margin-top: 0;
+  left: 0; }
 
 #sectionPolizas {
   display: none;
@@ -108,28 +109,25 @@
       margin-top: 15px; }
   .containerPolizas__arrow {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 15px; }
   .containerPolizas__flex {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 19rem; }
-    .containerPolizas__flex--btn {
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      width: 100px; }
 
 .polizaTodoRiesgo, .polizaTercerosCompleto {
   width: 24rem;
   font-family: 'Quicksand', sans-serif;
   margin-top: 35px;
-  text-align: center; }
+  text-align: center;
+  font-weight: bold; }
   .polizaTodoRiesgo h2, .polizaTercerosCompleto h2 {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    font-weight: bold; }
 
 .subrayado {
-  border-bottom: solid 4px #ff8fa3; }
+  border-bottom: solid 4px #b5838d; }
 
 .confirmaDatos__container {
   display: flex;
@@ -157,29 +155,36 @@
       flex-direction: column; }
     .confirmaDatos__personaYtarjeta__form__datosPersonales--label {
       font-family: 'Quicksand', sans-serif;
-      text-align: center; }
+      text-align: center;
+      font-weight: bold; }
   .confirmaDatos__personaYtarjeta__form__datosTarjeta {
     width: 30rem;
     display: flex;
     margin-top: 12px;
-    margin-left: 100px; }
+    margin-left: 100px;
+    background-color: #b5838d;
+    border-radius: 40px; }
     .confirmaDatos__personaYtarjeta__form__datosTarjeta--subtitulo {
       display: flex;
       align-items: center; }
     .confirmaDatos__personaYtarjeta__form__datosTarjeta--input {
       border: none;
-      border-bottom: solid 2px #ff8fa3;
+      border-bottom: solid 2px #b5838d;
       font-family: 'Quicksand', sans-serif;
       font-style: italic;
+      font-weight: bold;
       width: 17rem;
-      margin: 3px; }
+      margin: 3px;
+      background-color: transparent; }
   .confirmaDatos__personaYtarjeta__form__btn {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 130px; }
     .confirmaDatos__personaYtarjeta__form__btn--estilo {
-      height: 40px; }
+      height: 40px;
+      left: 0;
+      background-color: #b5838d; }
 
 .containerSuccess {
   width: 100%;
@@ -223,4 +228,5 @@
   margin-left: 30px; }
 
 #reinicio {
-  margin-bottom: 40px; }
+  width: 115px;
+  position: static; }

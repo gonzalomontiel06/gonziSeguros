@@ -8,29 +8,17 @@
     text-decoration: none;
 }
 
+body{
+    background-image: url(../img/auuto.jpg);
+}
+
 // HEADER
 
 .header{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-image: url(../img/auto.jpg);
-    background-size: 100% 40rem;
-    position: relative;
-
-    &::before{
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0,0,0,0.6);
-    }
-    
-    &__imgLogo{
-        position: relative;
-    }
+    height: 350px;
 }
 
 // DIV PASO 1 
@@ -49,6 +37,7 @@
             margin-top: 40px;
             margin-bottom: 30px;
             text-align: center;
+            font-weight: bold;
         }
     
         &--subtitulo{
@@ -56,9 +45,10 @@
         font-size: 1.3em;
         text-transform: uppercase;
         margin-top: 10px;
-        border-bottom: solid 2px #ff7fa3;
+        border-bottom: solid 2px #b5838d;
         text-align: center;
         width: 193px;
+        font-weight: bold;
         }
     
         &--img{
@@ -74,7 +64,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 50px;    
+    margin-bottom: 25px;
+
     
     &__form1{
         width: 19rem;
@@ -83,6 +75,7 @@
             font-family: 'Quicksand', sans-serif;
             font-size: 2em;
             text-align: center;
+            font-weight: bold;
         }
 
         &--form{
@@ -94,6 +87,7 @@
             
             &--label{
                 font-family: 'Quicksand', sans-serif;
+                font-weight: bold;
             }
 
             &--input{
@@ -101,10 +95,11 @@
                 margin: 2px;
                 border-radius: 7px;
                 border: none;
-                border-left: solid 1px #ff7fa3;
-                border-bottom: solid 2px #ff7fa3;
+                border-left: solid 1px #b5838d;
+                border-bottom: solid 2px #b5838d;
                 font-family: 'Quicksand', sans-serif;
                 text-align: center;
+                background-color: transparent;
             }
 
             &--input2{
@@ -118,14 +113,17 @@
     width: 100px;
     border-radius: 10px;
     margin-top: 20px;
-    border: solid 1px #ff4d6d;
+    border: solid 1px #b5838d;
     background-color: white;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
+    background-color: transparent;
+    position: relative;
+    left: 150px;
 
 
     &:hover{
-        background-color: #ff4d6d;
+        background-color: #b5838d;
     }
 }
 
@@ -133,6 +131,7 @@
     @extend .btn;
     height: 38px;
     margin-top: 0;
+    left: 0;
 }
 
 // SECTION POLIZA TODO RIESGO Y TR COMPLETO
@@ -165,21 +164,14 @@
 
     &__arrow{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         margin-top: 15px;
     }
 
     &__flex{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         height: 19rem;
-
-        &--btn{
-            display: flex;
-            justify-content: center;
-            align-items: start;
-            width: 100px;
-        }
     }
 }
 
@@ -188,9 +180,11 @@
     font-family: 'Quicksand', sans-serif;
     margin-top: 35px;
     text-align: center;
+    font-weight: bold;
 
     & h2{
         margin-bottom: 20px;
+        font-weight: bold;
     }
 }
 
@@ -199,7 +193,7 @@
 }
 
 .subrayado{
-    border-bottom: solid 4px #ff8fa3;
+    border-bottom: solid 4px #b5838d;
 }
 
 // PASO 3 - CONFIRMACION DE DATOS
@@ -248,7 +242,8 @@
 
                 &--label{
                     font-family: 'Quicksand', sans-serif;
-                    text-align: center
+                    text-align: center;
+                    font-weight: bold;
                 }
 
                 &--input{
@@ -261,6 +256,8 @@
                 display: flex;
                 margin-top: 12px;
                 margin-left: 100px;
+                background-color: #b5838d;
+                border-radius: 40px;
 
                 &--subtitulo{
                     @extend .containerPolizas__boxH2--segundoSub;
@@ -270,11 +267,13 @@
 
                 &--input{
                     border: none;
-                    border-bottom: solid 2px #ff8fa3;
+                    border-bottom: solid 2px #b5838d;
                     font-family: 'Quicksand', sans-serif;
                     font-style: italic;
+                    font-weight: bold;
                     width: 17rem;
                     margin: 3px;
+                    background-color: transparent;
                 }
             }
 
@@ -287,6 +286,8 @@
                 &--estilo{
                     @extend .btn;
                     height: 40px;
+                    left: 0;
+                    background-color: #b5838d;
                 }
             }
         }
@@ -355,6 +356,6 @@
 }
 
 #reinicio{
-    @extend .btn;
-    margin-bottom: 40px;
+    width: 115px;
+    position: static;
 }
